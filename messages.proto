@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+// When you don't know the type upfront - use `Any`
+import "google/protobuf/any.proto";
+
+message Customer {
+//	string username = 1;
+	repeated string email_addresses = 2;
+
+	enum Type {
+		REGULAR = 0; //sometimes a zero is set as default for numbers so it's good start Enums with Zero
+		MEMBER = 1;
+		SPONSOR = 2;
+	}
+	Type type = 3;
+
+	// inner message
+	message Address {
+		string address = 1;
+		string city = 2;
+		string state = 3;
+		string zip_code = 4;
+	}
+
+	Address address = 4;
+
+	// only one field can hold a value
+	oneof access_type {
+		// these tags are shared with the rest of the message i.e username below is duplicated, so are 1 && 2
+		string username = 1;
+		string email = 5;
+	}
+
+	// keys can ONLY be strings or integers
+	map<string, string> nick_names = 6;
+
+
+	// When you don't know the type upfront - use `Any`
+	repeated google.protobuf.Any details = 7;
+
+}

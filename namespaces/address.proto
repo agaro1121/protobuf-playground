@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+// JS does not change because of Javascript's module system
+package customerdata;
+
+message Address {
+    string address = 1;
+    string city = 2;
+    string state = 3;
+    string zip_code = 4;
+}

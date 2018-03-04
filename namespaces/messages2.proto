@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "namespaces/address.proto"; //cannot start with './'
+
+// JS does not change because of Javascript's module system
+package customerdata;
+
+message Customer {
+    CustomerType type = 1;
+    repeated Address addresses = 2;
+}
+
+enum CustomerType {
+    REGULAR = 0;
+    MEMBER = 1;
+    SPONSOR = 2;
+}
+
